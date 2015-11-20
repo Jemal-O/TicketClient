@@ -3,16 +3,22 @@
 <html>
 <body>
 	<c:if test="${not empty ticket}">
-		<h3>Your ticket number is ${ticket}.</h3>
+		<h3>Your ticket number is ${ticket}</h3>
 	</c:if>
-	
-	<c:if test="${cancelTicket=='true'}">
-		<h3>The ticket with number ${ticketId} is successfully cancelled</h3>
-	</c:if>
-	<c:if test="${not empty ticketNum}">
+	<c:if test="${not empty status}">
 		<h3>Your ticket is status ${status}, number is ${ticketNum}
 			departure time ${departDate} from city ${departCity}, arrival time
 			${arrivalDate} to ${arrivalCity}</h3>
+	</c:if>
+	<c:if test="${cancelTicket=='true'}">
+		<h3>The ticket with number ${ticketId} is successfully cancelled</h3>
+	</c:if>
+	<c:if test="${cancelTicket=='false'}">
+		<h3>The ticket with number ${ticketId} isn't found</h3>
+	</c:if>
+
+	<c:if test="${not empty mistake}">
+		<h3>The ticket with number ${mistake} isn't found</h3>
 	</c:if>
 	<center>
 		<form action="/TicketClient/getTicket">
@@ -42,11 +48,11 @@
 		</br> <input type="text" name="departCity" required /> <input type="text"
 			name="arrivalCity" /></br>
 		<h4>Input depart day and arrive day(time) in format YYYY-MM-DD</h4>
-		</br> <input type="date" name="departDate" value="2015-01-01" required /> <input
-			type="text" name="departTime" readonly value="T08:55:00" required /></br>
-		</br> <input type="date" name="arrivalDate" value="2015-01-01" required />
-		<input type="text" name="arrivalTime" readonly value="T08:55:00"
-			required />
+		</br> <input type="date" name="departDate" value="2015-01-01" required />
+		<input type="text" name="departTime" readonly value="T08:55:00"
+			required /></br> </br> <input type="date" name="arrivalDate"
+			value="2015-01-01" required /> <input type="text" name="arrivalTime"
+			readonly value="T08:55:00" required />
 	</form>
 
 </body>

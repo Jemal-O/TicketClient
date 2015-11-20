@@ -27,6 +27,21 @@ public interface TicketServiceImp {
 
     /**
      * 
+     * @param ticketNum
+     * @return
+     *     returns ws.Ticket
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getTicketUsingNum", targetNamespace = "http://ws/", className = "ws.GetTicketUsingNum")
+    @ResponseWrapper(localName = "getTicketUsingNumResponse", targetNamespace = "http://ws/", className = "ws.GetTicketUsingNumResponse")
+    @Action(input = "http://ws/TicketServiceImp/getTicketUsingNumRequest", output = "http://ws/TicketServiceImp/getTicketUsingNumResponse")
+    public Ticket getTicketUsingNum(
+        @WebParam(name = "ticketNum", targetNamespace = "")
+        int ticketNum);
+
+    /**
+     * 
      * @param lastName
      * @param departCity
      * @param name
@@ -88,21 +103,6 @@ public interface TicketServiceImp {
     @ResponseWrapper(localName = "payTicketResponse", targetNamespace = "http://ws/", className = "ws.PayTicketResponse")
     @Action(input = "http://ws/TicketServiceImp/payTicketRequest", output = "http://ws/TicketServiceImp/payTicketResponse")
     public Ticket payTicket(
-        @WebParam(name = "ticketNum", targetNamespace = "")
-        int ticketNum);
-
-    /**
-     * 
-     * @param ticketNum
-     * @return
-     *     returns ws.Ticket
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getTicketUsingNum", targetNamespace = "http://ws/", className = "ws.GetTicketUsingNum")
-    @ResponseWrapper(localName = "getTicketUsingNumResponse", targetNamespace = "http://ws/", className = "ws.GetTicketUsingNumResponse")
-    @Action(input = "http://ws/TicketServiceImp/getTicketUsingNumRequest", output = "http://ws/TicketServiceImp/getTicketUsingNumResponse")
-    public Ticket getTicketUsingNum(
         @WebParam(name = "ticketNum", targetNamespace = "")
         int ticketNum);
 

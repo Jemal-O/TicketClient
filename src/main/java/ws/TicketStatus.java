@@ -2,7 +2,6 @@
 package ws;
 
 import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -14,8 +13,8 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="ticketStatus">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="reserve"/>
- *     &lt;enumeration value="isPaid"/>
+ *     &lt;enumeration value="RESERVE"/>
+ *     &lt;enumeration value="IS_PAID"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -25,27 +24,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum TicketStatus {
 
-    @XmlEnumValue("reserve")
-    RESERVE("reserve"),
-    @XmlEnumValue("isPaid")
-    IS_PAID("isPaid");
-    private final String value;
-
-    TicketStatus(String v) {
-        value = v;
-    }
+    RESERVE,
+    IS_PAID;
 
     public String value() {
-        return value;
+        return name();
     }
 
     public static TicketStatus fromValue(String v) {
-        for (TicketStatus c: TicketStatus.values()) {
-            if (c.value.equals(v)) {
-                return c;
-            }
-        }
-        throw new IllegalArgumentException(v);
+        return valueOf(v);
     }
 
 }

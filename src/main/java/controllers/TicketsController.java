@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ws.Ticket;
 import ws.TicketServiceImp;
 import ws.TicketServiceImpService;
+import ws.TicketStatus;
 
 @Controller
 public class TicketsController {
@@ -25,20 +26,20 @@ public class TicketsController {
 										@RequestParam(name = "departCity") String departCity,
 										@RequestParam(name = "arrivalCity") String arrivalCity,
 										@RequestParam(name = "departDate") String departDate,
-										@RequestParam(name = "arrivalDate") String arrivalDate, @RequestParam(name = "birthDate") String birthDate,
+										@RequestParam(name = "arrivalDate") String arrivalDate, 
+										@RequestParam(name = "birthDate") String birthDate,
 										@RequestParam(name = "departTime") String departTime,
 										@RequestParam(name = "arrivalTime") String arrivalTime, 
-										ModelAndView modelAndView) throws IOException, DatatypeConfigurationException {
+										ModelAndView modelAndView)	throws IOException, DatatypeConfigurationException {
 
 		tickets = (new TicketServiceImpService()).getTicketServiceImpPort();
-
+		
 		XMLGregorianCalendar bDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(birthDate + "T00:00:00");
 		XMLGregorianCalendar departDateTime = DatatypeFactory.newInstance().newXMLGregorianCalendar(departDate + departTime);
 		XMLGregorianCalendar arrivalDateTime = DatatypeFactory.newInstance().newXMLGregorianCalendar(arrivalDate + departTime);
 
 		int ticketNumber = tickets.reserveTicket(name, lastName, patronymicName, departCity, arrivalCity,
 				departDateTime, arrivalDateTime, bDate);
-
 		modelAndView.getModelMap().addAttribute("ticket", ticketNumber);
 		modelAndView.setViewName("index");
 		return modelAndView;
@@ -48,16 +49,27 @@ public class TicketsController {
 	public ModelAndView getTicketUsingNum(@RequestParam(value = "ticketNum", required = false) int ticketNum,
 			ModelAndView modelAndView) throws IOException {
 		tickets = (new TicketServiceImpService()).getTicketServiceImpPort();
-		Ticket ticket = tickets.getTicketUsingNum(ticketNum);
-		addAttributeToModel(modelAndView, ticket);
+		try {
+			Ticket ticket = tickets.getTicketUsingNum(ticketNum);
+			addAttributeToModel(modelAndView, ticket);
+		} catch (NullPointerException ex) {
+			modelAndView.getModelMap().addAttribute("mistake", ticketNum);
+		}
+		modelAndView.setViewName("index");
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/pay")
 	public ModelAndView payTicket(@RequestParam(value = "ticketNum", required = false) int ticketNum,
 			ModelAndView modelAndView) throws IOException {
-		Ticket ticket = tickets.payTicket(ticketNum);
-		addAttributeToModel(modelAndView, ticket);
+		tickets = (new TicketServiceImpService()).getTicketServiceImpPort();
+		try {
+			Ticket ticket = tickets.payTicket(ticketNum);
+			addAttributeToModel(modelAndView, ticket);
+		} catch (NullPointerException ex) {
+			modelAndView.getModelMap().addAttribute("mistake", ticketNum);
+		}
+		modelAndView.setViewName("index");
 		return modelAndView;
 	}
 
@@ -77,7 +89,7 @@ public class TicketsController {
 		modelAndView.getModelMap().addAttribute("departCity", ticket.getDepartCity());
 		modelAndView.getModelMap().addAttribute("arrivalDate", ticket.getArrivalDate());
 		modelAndView.getModelMap().addAttribute("arrivalCity", ticket.getArrivalCity());
-		modelAndView.getModelMap().addAttribute("status", ticket.getTicketStatus());
+		modelAndView.getModelMap().addAttribute("status", ticket.getTicketStatus().name());
 		modelAndView.setViewName("index");
 	}
 

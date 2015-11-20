@@ -26,7 +26,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="person" type="{http://ws/}person" minOccurs="0"/>
  *         &lt;element name="ticketNum" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="ticketPrice" type="{http://www.w3.org/2001/XMLSchema}float"/>
- *         &lt;element name="ticketStatus" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ticketStatus" type="{http://ws/}ticketStatus" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -59,7 +59,8 @@ public class Ticket {
     protected Person person;
     protected int ticketNum;
     protected float ticketPrice;
-    protected String ticketStatus;
+    @XmlSchemaType(name = "string")
+    protected TicketStatus ticketStatus;
 
     /**
      * Gets the value of the arrivalCity property.
@@ -234,10 +235,10 @@ public class Ticket {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link TicketStatus }
      *     
      */
-    public String getTicketStatus() {
+    public TicketStatus getTicketStatus() {
         return ticketStatus;
     }
 
@@ -246,10 +247,10 @@ public class Ticket {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link TicketStatus }
      *     
      */
-    public void setTicketStatus(String value) {
+    public void setTicketStatus(TicketStatus value) {
         this.ticketStatus = value;
     }
 

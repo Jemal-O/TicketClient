@@ -17,6 +17,7 @@ import ws.TicketStatus;
 
 @Controller
 public class TicketsController {
+//	не самое хорошее имя для сервиса tickets
 	TicketServiceImp tickets;
 
 	@RequestMapping(value = "/reserve")
@@ -32,6 +33,7 @@ public class TicketsController {
 										@RequestParam(name = "arrivalTime") String arrivalTime, 
 										ModelAndView modelAndView)	throws IOException, DatatypeConfigurationException {
 
+//		если это spring, то стоит использовать dependency injection
 		tickets = (new TicketServiceImpService()).getTicketServiceImpPort();
 		
 		XMLGregorianCalendar bDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(birthDate + "T00:00:00");
@@ -48,10 +50,12 @@ public class TicketsController {
 	@RequestMapping(value = "/getTicket")
 	public ModelAndView getTicketUsingNum(@RequestParam(value = "ticketNum", required = false) int ticketNum,
 			ModelAndView modelAndView) throws IOException {
+//		эм... в каждом методе создавать объект TicketServiceImpService? Зачем?
 		tickets = (new TicketServiceImpService()).getTicketServiceImpPort();
 		try {
 			Ticket ticket = tickets.getTicketUsingNum(ticketNum);
 			addAttributeToModel(modelAndView, ticket);
+//			плохо ловаить NullPointerException. Это программная ошибка, а не бизнес логики. Можно случайно пропустить серьезный баг.
 		} catch (NullPointerException ex) {
 			modelAndView.getModelMap().addAttribute("mistake", ticketNum);
 		}

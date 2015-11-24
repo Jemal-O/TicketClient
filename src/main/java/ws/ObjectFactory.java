@@ -31,7 +31,9 @@ public class ObjectFactory {
     private final static QName _ReturnTicketResponse_QNAME = new QName("http://ws/", "returnTicketResponse");
     private final static QName _PayTicket_QNAME = new QName("http://ws/", "payTicket");
     private final static QName _ReturnTicket_QNAME = new QName("http://ws/", "returnTicket");
+    private final static QName _IsPaidException_QNAME = new QName("http://ws/", "IsPaidException");
     private final static QName _GetTicketUsingNumResponse_QNAME = new QName("http://ws/", "getTicketUsingNumResponse");
+    private final static QName _NotTicketFoundException_QNAME = new QName("http://ws/", "NotTicketFoundException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: ws
@@ -97,11 +99,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link IsPaidException }
+     * 
+     */
+    public IsPaidException createIsPaidException() {
+        return new IsPaidException();
+    }
+
+    /**
      * Create an instance of {@link GetTicketUsingNumResponse }
      * 
      */
     public GetTicketUsingNumResponse createGetTicketUsingNumResponse() {
         return new GetTicketUsingNumResponse();
+    }
+
+    /**
+     * Create an instance of {@link NotTicketFoundException }
+     * 
+     */
+    public NotTicketFoundException createNotTicketFoundException() {
+        return new NotTicketFoundException();
+    }
+
+    /**
+     * Create an instance of {@link DataTransfer }
+     * 
+     */
+    public DataTransfer createDataTransfer() {
+        return new DataTransfer();
     }
 
     /**
@@ -184,12 +210,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IsPaidException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws/", name = "IsPaidException")
+    public JAXBElement<IsPaidException> createIsPaidException(IsPaidException value) {
+        return new JAXBElement<IsPaidException>(_IsPaidException_QNAME, IsPaidException.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetTicketUsingNumResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws/", name = "getTicketUsingNumResponse")
     public JAXBElement<GetTicketUsingNumResponse> createGetTicketUsingNumResponse(GetTicketUsingNumResponse value) {
         return new JAXBElement<GetTicketUsingNumResponse>(_GetTicketUsingNumResponse_QNAME, GetTicketUsingNumResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NotTicketFoundException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws/", name = "NotTicketFoundException")
+    public JAXBElement<NotTicketFoundException> createNotTicketFoundException(NotTicketFoundException value) {
+        return new JAXBElement<NotTicketFoundException>(_NotTicketFoundException_QNAME, NotTicketFoundException.class, null, value);
     }
 
 }

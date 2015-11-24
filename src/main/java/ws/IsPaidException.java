@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for reserveTicket complex type.
+ * <p>Java class for IsPaidException complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="reserveTicket">
+ * &lt;complexType name="IsPaidException">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="dataTransfer" type="{http://ws/}dataTransfer" minOccurs="0"/>
+ *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "reserveTicket", propOrder = {
-    "dataTransfer"
+@XmlType(name = "IsPaidException", propOrder = {
+    "message"
 })
-public class ReserveTicket {
+public class IsPaidException {
 
-    protected DataTransfer dataTransfer;
+    protected String message;
 
     /**
-     * Gets the value of the dataTransfer property.
+     * Gets the value of the message property.
      * 
      * @return
      *     possible object is
-     *     {@link DataTransfer }
+     *     {@link String }
      *     
      */
-    public DataTransfer getDataTransfer() {
-        return dataTransfer;
+    public String getMessage() {
+        return message;
     }
 
     /**
-     * Sets the value of the dataTransfer property.
+     * Sets the value of the message property.
      * 
      * @param value
      *     allowed object is
-     *     {@link DataTransfer }
+     *     {@link String }
      *     
      */
-    public void setDataTransfer(DataTransfer value) {
-        this.dataTransfer = value;
+    public void setMessage(String value) {
+        this.message = value;
     }
 
 }

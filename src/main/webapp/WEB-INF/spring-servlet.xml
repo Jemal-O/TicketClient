@@ -13,7 +13,6 @@
 	<mvc:annotation-driven />
 	<context:annotation-config />
 	<context:component-scan base-package="controllers" />
-	<!-- JSON Support -->
 	<bean name="viewResolver"
 		class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 	<bean
@@ -26,3 +25,4 @@
 		</property>
 	</bean>
 </beans>
+    

@@ -60,8 +60,8 @@ public interface TicketProcessing {
      * @param ticketNum
      * @return
      *     returns ws.Ticket
-     * @throws IsPaidException_Exception
      * @throws NotTicketFoundException_Exception
+     * @throws IsPaidException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

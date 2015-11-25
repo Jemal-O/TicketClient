@@ -20,12 +20,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="arrivalCity" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arrivalDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="defaultPrice" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="departCity" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="departDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="person" type="{http://ws/}person" minOccurs="0"/>
+ *         &lt;element name="price" type="{http://ws/}price" minOccurs="0"/>
  *         &lt;element name="ticketNum" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="ticketPrice" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="ticketStatus" type="{http://ws/}ticketStatus" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -39,12 +38,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "ticket", propOrder = {
     "arrivalCity",
     "arrivalDate",
-    "defaultPrice",
     "departCity",
     "departDate",
     "person",
+    "price",
     "ticketNum",
-    "ticketPrice",
     "ticketStatus"
 })
 public class Ticket {
@@ -52,13 +50,12 @@ public class Ticket {
     protected String arrivalCity;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar arrivalDate;
-    protected float defaultPrice;
     protected String departCity;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar departDate;
     protected Person person;
+    protected Price price;
     protected int ticketNum;
-    protected float ticketPrice;
     @XmlSchemaType(name = "string")
     protected TicketStatus ticketStatus;
 
@@ -108,22 +105,6 @@ public class Ticket {
      */
     public void setArrivalDate(XMLGregorianCalendar value) {
         this.arrivalDate = value;
-    }
-
-    /**
-     * Gets the value of the defaultPrice property.
-     * 
-     */
-    public float getDefaultPrice() {
-        return defaultPrice;
-    }
-
-    /**
-     * Sets the value of the defaultPrice property.
-     * 
-     */
-    public void setDefaultPrice(float value) {
-        this.defaultPrice = value;
     }
 
     /**
@@ -199,6 +180,30 @@ public class Ticket {
     }
 
     /**
+     * Gets the value of the price property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Price }
+     *     
+     */
+    public Price getPrice() {
+        return price;
+    }
+
+    /**
+     * Sets the value of the price property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Price }
+     *     
+     */
+    public void setPrice(Price value) {
+        this.price = value;
+    }
+
+    /**
      * Gets the value of the ticketNum property.
      * 
      */
@@ -212,22 +217,6 @@ public class Ticket {
      */
     public void setTicketNum(int value) {
         this.ticketNum = value;
-    }
-
-    /**
-     * Gets the value of the ticketPrice property.
-     * 
-     */
-    public float getTicketPrice() {
-        return ticketPrice;
-    }
-
-    /**
-     * Sets the value of the ticketPrice property.
-     * 
-     */
-    public void setTicketPrice(float value) {
-        this.ticketPrice = value;
     }
 
     /**

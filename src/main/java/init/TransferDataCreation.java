@@ -1,12 +1,7 @@
 package init;
 
 import javax.xml.datatype.XMLGregorianCalendar;
-
-import org.springframework.stereotype.Component;
-
 import ws.DataTransfer;
-
-@Component("transfer")
 public class TransferDataCreation {
 
 	public DataTransfer initDataTransfer(String name, String lastName, String patronymicName, String departCity,

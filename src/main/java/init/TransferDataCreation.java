@@ -2,6 +2,7 @@ package init;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import ws.DataTransfer;
+
 public class TransferDataCreation {
 
 	public DataTransfer initDataTransfer(String name, String lastName, String patronymicName, String departCity,

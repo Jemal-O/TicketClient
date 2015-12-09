@@ -22,17 +22,18 @@
 	</c:if>
 	<center>
 		<form action="/TicketClient/getTicket">
-			<input type="text" name="ticketNum" required /> <input type="submit"
+		<h3>You may write only number!</h3></br>
+			<input type="text" name="ticketNum" required pattern="[0-9]{1-3}"/> <input type="submit"
 				value="Get ticket">
 		</form>
 		<br />
 		<form action="/TicketClient/pay">
-			<input type="text" name="ticketNum" required /> <input type="submit"
+			<input type="text" name="ticketNum" required pattern="[0-9]{1-3}"/> <input type="submit"
 				value="Pay">
 		</form>
 		<br />
 		<form action="/TicketClient/return">
-			<input type="text" name="ticketNum" required /> <input type="submit"
+			<input type="text" name="ticketNum" required pattern="[0-9]{1-3}"/> <input type="submit"
 				value="Return Ticket">
 		</form>
 	</center>

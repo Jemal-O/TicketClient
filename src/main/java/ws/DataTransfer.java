@@ -1,6 +1,8 @@
 
 package ws;
 
+import java.util.GregorianCalendar;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -98,13 +100,13 @@ public class DataTransfer {
     /**
      * Sets the value of the arrivalDate property.
      * 
-     * @param value
+     * @param xmlGregorianCalendar
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setArrivalDate(XMLGregorianCalendar value) {
-        this.arrivalDate = value;
+    public void setArrivalDate(XMLGregorianCalendar xmlGregorianCalendar) {
+        this.arrivalDate = xmlGregorianCalendar;
     }
 
     /**

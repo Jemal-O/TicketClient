@@ -64,9 +64,24 @@ public interface TicketProcessing {
      * 
      * @param ticketNum
      * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "returnTicket", targetNamespace = "http://ws/", className = "ws.ReturnTicket")
+    @ResponseWrapper(localName = "returnTicketResponse", targetNamespace = "http://ws/", className = "ws.ReturnTicketResponse")
+    @Action(input = "http://ws/TicketProcessing/returnTicketRequest", output = "http://ws/TicketProcessing/returnTicketResponse")
+    public boolean returnTicket(
+        @WebParam(name = "ticketNum", targetNamespace = "")
+        int ticketNum);
+
+    /**
+     * 
+     * @param ticketNum
+     * @return
      *     returns ws.Ticket
-     * @throws NotTicketFoundException_Exception
      * @throws IsPaidException_Exception
+     * @throws NotTicketFoundException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -81,20 +96,5 @@ public interface TicketProcessing {
         int ticketNum)
         throws IsPaidException_Exception, NotTicketFoundException_Exception
     ;
-
-    /**
-     * 
-     * @param ticketNum
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "returnTicket", targetNamespace = "http://ws/", className = "ws.ReturnTicket")
-    @ResponseWrapper(localName = "returnTicketResponse", targetNamespace = "http://ws/", className = "ws.ReturnTicketResponse")
-    @Action(input = "http://ws/TicketProcessing/returnTicketRequest", output = "http://ws/TicketProcessing/returnTicketResponse")
-    public boolean returnTicket(
-        @WebParam(name = "ticketNum", targetNamespace = "")
-        int ticketNum);
 
 }
